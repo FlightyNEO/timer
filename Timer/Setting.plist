@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Приращение</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>Фишер Блиц</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>2</integer>
+			<key>Time</key>
+			<integer>180</integer>
+			<key>Overtime</key>
+			<integer>2</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>3 мин, +2 сек перед каждым ходом</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Фишер соревнование</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>2</integer>
+			<key>Time</key>
+			<integer>3000</integer>
+			<key>Overtime</key>
+			<integer>2</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>50 мин, +2 сек перед каждым ходом</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Фишер до</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>2</integer>
+			<key>Time</key>
+			<integer>60</integer>
+			<key>Overtime</key>
+			<integer>60</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>1 мин, +1 мин перед каждым ходом</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Фишер после</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>3</integer>
+			<key>Time</key>
+			<integer>60</integer>
+			<key>Overtime</key>
+			<integer>60</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>1 мин, +1 мин после каждого хода</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Бронштейна Блиц</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>4</integer>
+			<key>Time</key>
+			<integer>300</integer>
+			<key>Overtime</key>
+			<integer>3</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>5 мин, задержка 3 сек, применяемая после каждого хода</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Бронштейна Активные</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>4</integer>
+			<key>Time</key>
+			<integer>1</integer>
+			<key>Overtime</key>
+			<integer>10</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>20 мин, задержка 10 сек, применяемая после каждого хода</string>
+		</dict>
+	</array>
+	<key>Быстрота</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>Активные</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>1800</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>30 мин</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Быстрые</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>900</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>15 мин</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Блиц</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>300</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>5 мин</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Буллет</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>180</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>3 мин</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>Молния</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>60</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>1 мин</string>
+		</dict>
+	</array>
+	<key>Песочные часы</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>1 минута</string>
+			<key>Type</key>
+			<integer>2</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>60</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<true/>
+			<key>Detail</key>
+			<string>1 мин, песочные часы</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>10 минут</string>
+			<key>Type</key>
+			<integer>2</integer>
+			<key>TypeDelay</key>
+			<integer>0</integer>
+			<key>Time</key>
+			<integer>600</integer>
+			<key>Overtime</key>
+			<integer>0</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>10 мин, песочные часы</string>
+		</dict>
+	</array>
+	<key>Скоропостижная смерть</key>
+	<array>
+		<dict>
+			<key>Name</key>
+			<string>10 секунд</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>1</integer>
+			<key>Time</key>
+			<integer>0</integer>
+			<key>Overtime</key>
+			<integer>10</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>0 сек, задержка 10 сек на ход перед запуском таймера</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>30 секунд</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>1</integer>
+			<key>Time</key>
+			<integer>0</integer>
+			<key>Overtime</key>
+			<integer>30</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>0 сек, задержка 30 сек на ход перед запуском таймера</string>
+		</dict>
+		<dict>
+			<key>Name</key>
+			<string>1 минута</string>
+			<key>Type</key>
+			<integer>1</integer>
+			<key>TypeDelay</key>
+			<integer>1</integer>
+			<key>Time</key>
+			<integer>0</integer>
+			<key>Overtime</key>
+			<integer>60</integer>
+			<key>Default</key>
+			<false/>
+			<key>Detail</key>
+			<string>0 сек, задержка 1 мин на ход перед запуском таймера</string>
+		</dict>
+	</array>
+</dict>
+</plist>
