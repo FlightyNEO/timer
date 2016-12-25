@@ -252,6 +252,8 @@ typedef enum {
     return cell;
 }
 
+#pragma mark - Table view delegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -480,7 +482,7 @@ typedef enum {
     // Create picker
     [self createPickerView:cell];
     
-    [cell addSubview:self.pickerView];
+    [cell.contentView addSubview:self.pickerView];
 }
 
 - (void)tableView:(UITableView *)tableView updateAtIndexPath:(NSIndexPath *)indexPath {
@@ -591,15 +593,9 @@ typedef enum {
 // Create picker
 - (void)createPickerView:(UITableViewCell *)cell {
     _pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(16,
-                                                                     40,
-                                                                     CGRectGetWidth(cell.frame) - 36,
-                                                                     CGRectGetHeight(cell.frame) - 40)];
-    
-    //self.pickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(16,
-    //                                                                 40,
-    //                                                                 CGRectGetWidth(cell.frame) - 36,
-    //                                                                 CGRectGetMaxY(cell.frame) - CGRectGetMinY(cell.frame) - 40)];
-    
+                                                                 40,
+                                                                 CGRectGetWidth(cell.frame) - 36,
+                                                                 CGRectGetHeight(cell.frame) - 40)];
     self.pickerView.dataSource = self;
     self.pickerView.delegate = self;
     

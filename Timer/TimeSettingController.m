@@ -202,6 +202,8 @@
     return cell;
 }
 
+#pragma mark - Table view delegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:self.selectedIndexPath];
@@ -214,66 +216,8 @@
     
     [self changeGameOptions:indexPath];
     
-    
-    //NSIndexPath *index = indexPath;
-    
     [self archiveCurrentSetting];
-    
-//    extern GameOption gGameOption;
-//    
-//    NSNumber *type = [NSNumber numberWithInt:gGameOption.type];
-//    NSNumber *typeDelay = [NSNumber numberWithInt:gGameOption.typeDelay];
-//    NSNumber *time = [NSNumber numberWithInt:gGameOption.time];
-//    NSNumber *overtime = [NSNumber numberWithInt:gGameOption.overtime];
-//    
-//    NSDictionary *dict = @{@"GameType" : type,
-//                           @"GameTypeDelay" : typeDelay,
-//                           @"GameTime" : time,
-//                           @"GameOvertime" : overtime,
-//                           @"IndexPath" : indexPath};
-//    
-//    
-//    
-//    //NSArray *options = [NSArray arrayWithObjects:index, nil];
-//    NSString *path = [NSString stringWithFormat:@"%@/game.arch", NSTemporaryDirectory()];
-//    [NSKeyedArchiver archiveRootObject:dict toFile:path];
-    
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-// Override to support editing the table view.
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        // Delete the row from the data source
-//        NSLog(@"Delete");
-//        //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//    }   
-//}
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {
     
