@@ -110,6 +110,11 @@ typedef enum {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (_typeWarning == TypeWarningBlink) {
+        return 5;
+    }
+    
     return 6;
 }
 
@@ -121,57 +126,89 @@ typedef enum {
     extern NSMutableArray<NSDictionary *> *gWarnings;
     
     switch (indexPath.row) {
-        case 0:
+            
+        case 0: {
+            
             cell = [tableView dequeueReusableCellWithIdentifier:@"TimeWarningCell" forIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [self titleForRow:WarningControllerCellTimeWarning];
-            break;
             
-        case 1:
+        } break;
+            
+        case 1: {
+            
             cell = [tableView dequeueReusableCellWithIdentifier:@"TypeWarningCell" forIndexPath:indexPath];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = [self titleForRow:WarningControllerCellTypeWarning];
-            break;
+        
+        } break;
             
-        case 2:
-            cell = [tableView dequeueReusableCellWithIdentifier:@"ValumeCell" forIndexPath:indexPath];
+        case 2: {
             
-            for (UISlider *obj in cell.contentView.subviews) {
-                if ([obj class] == [UISlider class]) {
-                    obj.value = [[[gWarnings objectAtIndex:self.row] objectForKey:@"Volume"] floatValue];
+            if (_typeWarning != TypeWarningBlink) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:@"ValumeCell" forIndexPath:indexPath];
+                
+                for (UISlider *obj in cell.contentView.subviews) {
+                    if ([obj class] == [UISlider class]) {
+                        obj.value = [[[gWarnings objectAtIndex:self.row] objectForKey:@"Volume"] floatValue];
+                    }
+                }
+                
+                break;
+            }
+        }
+            
+        case 3: {
+            
+            if (_typeWarning == TypeWarningBlink) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:@"OnForBlackCell" forIndexPath:indexPath];
+                
+                for (UISwitch *obj in cell.contentView.subviews) {
+                    if ([obj class] == [UISwitch class]) {
+                        obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForBlack"] boolValue];
+                    }
+                }
+                
+            } else {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:@"OnForWhiteCell" forIndexPath:indexPath];
+                
+                for (UISwitch *obj in cell.contentView.subviews) {
+                    if ([obj class] == [UISwitch class]) {
+                        obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForWhite"] boolValue];
+                    }
                 }
             }
-            break;
+        
+        } break;
             
-        case 3:
-            cell = [tableView dequeueReusableCellWithIdentifier:@"OnForWhiteCell" forIndexPath:indexPath];
+        case 4: {
             
-            for (UISwitch *obj in cell.contentView.subviews) {
-                if ([obj class] == [UISwitch class]) {
-                    obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForWhite"] boolValue];
+            if (_typeWarning == TypeWarningBlink) {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:@"PreviewCell" forIndexPath:indexPath];
+                
+            } else {
+                
+                cell = [tableView dequeueReusableCellWithIdentifier:@"OnForBlackCell" forIndexPath:indexPath];
+                
+                for (UISwitch *obj in cell.contentView.subviews) {
+                    if ([obj class] == [UISwitch class]) {
+                        obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForBlack"] boolValue];
+                    }
                 }
             }
-            break;
+        
+        } break;
             
-        case 4:
-            cell = [tableView dequeueReusableCellWithIdentifier:@"OnForBlackCell" forIndexPath:indexPath];
+        case 5: {
             
-            for (UISwitch *obj in cell.contentView.subviews) {
-                if ([obj class] == [UISwitch class]) {
-                    obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForBlack"] boolValue];
-                }
-            }
-            break;
-            
-        case 5:
             cell = [tableView dequeueReusableCellWithIdentifier:@"PreviewCell" forIndexPath:indexPath];
-            
-            break;
-            
-        default:
-            break;
+        
+        } break;
     }
-    
     
     return cell;
 }
@@ -695,6 +732,18 @@ typedef enum {
                 _typeWarning = TypeWarningSpeech;
             } else if ([[self.typeWarningPicker objectAtIndex:row] isEqualToString:@"Мигать"]) {
                 _typeWarning = TypeWarningBlink;
+            }
+            
+            // если тип переключается на "мигание" убираем шкалу громкости
+            if (_typeWarning == TypeWarningBlink &&
+                [self.tableView numberOfRowsInSection:0] == 6) {
+                
+                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+                
+            } else if (_typeWarning != TypeWarningBlink &&
+                       [self.tableView numberOfRowsInSection:0] == 5) {
+                
+                [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
             }
             
             self.headerRowTypeWarningLabel.text = [self titleForRow:WarningControllerCellTypeWarning];
