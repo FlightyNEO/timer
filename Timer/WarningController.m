@@ -145,8 +145,18 @@ typedef enum {
             
         case 2: {
             
-            if (_typeWarning != TypeWarningBlink) {
+            if (_typeWarning == TypeWarningBlink) {
                 
+                cell = [tableView dequeueReusableCellWithIdentifier:@"OnForWhiteCell" forIndexPath:indexPath];
+                
+                for (UISwitch *obj in cell.contentView.subviews) {
+                    if ([obj class] == [UISwitch class]) {
+                        obj.on = [[[gWarnings objectAtIndex:self.row] objectForKey:@"OnForWhite"] boolValue];
+                    }
+                }
+            
+            } else {
+            
                 cell = [tableView dequeueReusableCellWithIdentifier:@"ValumeCell" forIndexPath:indexPath];
                 
                 for (UISlider *obj in cell.contentView.subviews) {
@@ -154,10 +164,9 @@ typedef enum {
                         obj.value = [[[gWarnings objectAtIndex:self.row] objectForKey:@"Volume"] floatValue];
                     }
                 }
-                
-                break;
             }
-        }
+            
+        } break;
             
         case 3: {
             
@@ -262,7 +271,7 @@ typedef enum {
     CGFloat cellHeight = 40.f;
     
     if (selectedRow == indexPath.row) {
-        cellHeight = 120.f;
+        cellHeight = 150.f;
     }
     
     return cellHeight;
@@ -449,9 +458,9 @@ typedef enum {
     NSMutableString *string = [NSMutableString string];
     
     if (self.onForWhite && !self.onForBlack) {
-        [string appendString:@"белые"];
+        [string appendString:@"только для белых"];
     } else if (!self.onForWhite && self.onForBlack) {
-        [string appendString:@"черные"];
+        [string appendString:@"только для черных"];
     } else if (!self.onForWhite && !self.onForBlack) {
         [string appendString:@"отключенно"];
     }
