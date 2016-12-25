@@ -14,8 +14,6 @@
 
 @property (assign, nonatomic, readonly) NSIndexPath *editIndexPath;
 
-//@property (weak, nonatomic, readonly) UIBarButtonItem *backButton;
-
 @end
 
 @implementation TimeSettingController
@@ -23,16 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //NSString *titleForBackButton = self.navigationController.navigationItem.title;
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Настройки" style:UIBarButtonItemStylePlain target:self action:@selector(actionBack:)];  // ИЗМЕНИТЬ
     self.navigationItem.leftBarButtonItem = backButton;
-    //[self.navigationItem setBackBarButtonItem:backButton];
-    
-    //[self.backButton setAction:@selector(actionBack:)];
     
     // Разархивируем массив с собственными вариантами таймера
     NSString *pathOwnGameOptions = [NSString stringWithFormat:@"%@/ownGameOptions", NSTemporaryDirectory()];

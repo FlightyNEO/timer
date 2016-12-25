@@ -56,14 +56,6 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    // create dictionary for time picker and overtime picker
-    
     selectedRow = -1;
     
     // filling table
@@ -94,17 +86,16 @@ typedef enum {
         [timePickerMinutes addObject:[NSNumber numberWithInt:i]];
     }
     
-    _timeWarningPicker = @{kHours : timePickerHours,
-                               kMinutes : timePickerMinutes,
-                               kSeconds : timePickerMinutes};
+    _timeWarningPicker = @{kHours   : timePickerHours,
+                           kMinutes : timePickerMinutes,
+                           kSeconds : timePickerMinutes};
     
     
     // create dictionary for type delay picker
     _typeWarningPicker = @[@"Сигнал тревоги",
-                               @"Гудок",
-                               @"Речь",
-                               @"Мигать"];
-    
+                           @"Гудок",
+                           @"Речь",
+                           @"Мигать"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -127,7 +118,7 @@ typedef enum {
     UITableViewCell *cell;
     
     // Configure the cell...
-    extern NSMutableArray <NSDictionary *> *gWarnings;
+    extern NSMutableArray<NSDictionary *> *gWarnings;
     
     switch (indexPath.row) {
         case 0:
@@ -185,6 +176,8 @@ typedef enum {
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -207,6 +200,7 @@ typedef enum {
             
             NSIndexPath *oldIndexPath = [NSIndexPath indexPathForRow:selectedRow inSection:0];
             selectedRow = indexPath.row;
+            
             [self tableView:tableView updateAtIndexPath:oldIndexPath];
             
             // заполняем ячейку
@@ -215,10 +209,10 @@ typedef enum {
         } else {
             
             selectedRow = -1;
-            
             [self tableView:tableView updateAtIndexPath:indexPath];
             
         }
+        
     } else if ([cell.reuseIdentifier isEqualToString:@"PreviewCell"]) {
         
         [self previewWarning];
@@ -237,49 +231,6 @@ typedef enum {
     return cellHeight;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark - Methods
 
@@ -373,7 +324,7 @@ typedef enum {
     // Create picker
     [self createPickerView:cell];
     
-    [cell addSubview:self.pickerView];
+    [cell.contentView addSubview:self.pickerView];
 }
 
 - (void)createPickerView:(UITableViewCell *)cell {

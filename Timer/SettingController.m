@@ -23,12 +23,6 @@ GameOption gGameOption;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
     self.isChangeSetting = NO;
     
     // Разархивируем массив с названием выбранного таймера (если его нету создаем новый)
@@ -46,7 +40,6 @@ GameOption gGameOption;
                      @"1 мин, песочные часы", @"Detail",
                      nil];
     }
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,7 +76,7 @@ GameOption gGameOption;
             break;
             
         case 3:
-            numberOfRows = 2; //numberOfRows = 3;
+            numberOfRows = 1;
             break;
             
         default:
@@ -162,16 +155,16 @@ GameOption gGameOption;
         case 3: {
             
             switch (indexPath.row) {
-                case 0:
-                    cell = [tableView dequeueReusableCellWithIdentifier:@"PlaneModeCell" forIndexPath:indexPath];
-                    
-                    for (UISwitch *obj in cell.contentView.subviews) {
-                        if ([obj class] == [UISwitch class]) {
-                            obj.on = [[gOption objectForKey:@"planeMode"] boolValue];
-                        }
-                    }
-                    
-                    break;
+//                case 0:
+//                    cell = [tableView dequeueReusableCellWithIdentifier:@"PlaneModeCell" forIndexPath:indexPath];
+//
+//                    for (UISwitch *obj in cell.contentView.subviews) {
+//                        if ([obj class] == [UISwitch class]) {
+//                            obj.on = [[gOption objectForKey:@"planeMode"] boolValue];
+//                        }
+//                    }
+//
+//                    break;
 //                case 1:
 //                    cell = [tableView dequeueReusableCellWithIdentifier:@"NumberOfStepCell" forIndexPath:indexPath];
 //                    
@@ -182,7 +175,7 @@ GameOption gGameOption;
 //                    }
                     
                     break;
-                case 1: //case 2:
+                case 0:
                     cell = [tableView dequeueReusableCellWithIdentifier:@"AboutMeCell" forIndexPath:indexPath];
                     break;
                     
@@ -250,7 +243,6 @@ GameOption gGameOption;
         [self archiveWarnings];     // Архивируем предупреждения
         
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationNone];
-        
     }
 }
 
@@ -365,10 +357,7 @@ GameOption gGameOption;
         WarningController *navigationController = segue.destinationViewController;
         navigationController.topNavigationController = self;
         navigationController.row = row;
-        
     }
-    
-    
 }
 
 #pragma mark - UIAdaptivePresentationControllerDelegate

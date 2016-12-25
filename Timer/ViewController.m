@@ -86,7 +86,6 @@
     }
     
     [self.timer refreshTimers];
-    
 }
 
 - (void)drawDesks {
@@ -115,7 +114,6 @@
     
     [self.view addSubview:self.whiteView];
     [self.view addSubview:self.blackView];
-    
 }
 
 - (void)drawTimers {
@@ -139,7 +137,6 @@
     
     [self.whiteView addSubview:self.timeLabelWhite];
     [self.blackView addSubview:self.timeLabelBlack];
-    
 }
 
 - (void)drawOvertimeTimers {
@@ -163,7 +160,6 @@
     
     [self.whiteView addSubview:self.overtimeLabelWhite];
     [self.blackView addSubview:self.overtimeLabelBlack];
-    
 }
 
 - (void)redrawing {
@@ -300,7 +296,6 @@
         _overtimeLabelBlack = nil;
         _overtimeLabelWhite = nil;
     }
-    
 }
 
 - (void)removeButton:(UIButton *)button {
@@ -393,7 +388,7 @@
 
 #pragma mark - Methods
 
--(BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
@@ -449,7 +444,6 @@
     }
     
     [self resetDraw];
-    
 }
 
 #pragma mark - Change settings
@@ -512,7 +506,6 @@
     //[soundID setNumberOfLoops:0];
     [soundID setCurrentTime:1];
     [soundID play];
-    
 }
 
 #pragma mark - Actions
@@ -528,7 +521,6 @@
     } else if (self.gameOption.typeDelay == GameTypeDelayDefault) {
         self.timer.overtimeTimeInterval = self.gameOption.overtime;
     }
-    
 }
 
 // change step to black
@@ -603,7 +595,6 @@
     // Удаляем start button
     [self.start removeFromSuperview];
     _start = nil;
-    
 }
 
 // start/pause button

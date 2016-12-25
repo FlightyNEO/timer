@@ -10,11 +10,9 @@
 #import "TimeSettingController.h"
 #import "Button.h"
 
-//@protocol ViewControllerDelegate;
-@protocol ViewControllerTimerDelegate;
-
-//@class SettingController;
 @class Timer;
+
+@protocol ViewControllerTimerDelegate;
 
 typedef enum {
     TurnAnyone = 1,
@@ -33,9 +31,7 @@ typedef enum {
 @property (weak, nonatomic, readonly) UILabel *overtimeLabelWhite;
 
 @property (assign, nonatomic, readwrite) GameOption gameOption;    // Setting game
-
 @property (weak, nonatomic, readonly) Button *start;              // Start button
-
 @property (strong, nonatomic, readonly) Timer *timer;
 
 - (void)resetTimer;
@@ -49,18 +45,14 @@ typedef enum {
 - (void)changeAirplainMode;         // сменить уровень громкости нажатия
 
 @end
-//
-//
-//@protocol ViewControllerDelegate
-//@required
-////- (IBAction)actionBack:(UIBarButtonItem *)sender;
-//@end
 
 
 @protocol ViewControllerTimerDelegate
+
 @required
 - (void)startTimer;
 - (void)stopTimer;
 - (void)addOvertime;
 - (void)refreshTimers;
+
 @end
