@@ -12,7 +12,7 @@
 
 @interface TimeSettingController ()
 
-@property (assign, nonatomic, readonly) NSIndexPath *editIndexPath;
+@property (assign, nonatomic) NSIndexPath *editIndexPath;
 
 @end
 

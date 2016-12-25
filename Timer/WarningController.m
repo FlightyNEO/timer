@@ -25,39 +25,37 @@ typedef enum {
 
 @interface WarningController ()
 
-@property (strong, nonatomic, readonly) UIPickerView *pickerView;
-@property (strong, nonatomic, readonly) NSDictionary *timeWarningPicker;
-@property (strong, nonatomic, readonly) NSArray *typeWarningPicker;
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) NSDictionary *timeWarningPicker;
+@property (strong, nonatomic) NSArray *typeWarningPicker;
 
-@property (assign, nonatomic, readonly) NSInteger timePickerHours;
-@property (assign, nonatomic, readonly) NSInteger timePickerMinutes;
-@property (assign, nonatomic, readonly) NSInteger timePickerSeconds;
+@property (assign, nonatomic) NSInteger timePickerHours;
+@property (assign, nonatomic) NSInteger timePickerMinutes;
+@property (assign, nonatomic) NSInteger timePickerSeconds;
 
-@property (assign, nonatomic, readonly) TypeWarning typeWarning;
+@property (assign, nonatomic) TypeWarning typeWarning;
 
-@property (strong, nonatomic, readonly) UILabel *headerRowTimeWarningLabel;
-@property (strong, nonatomic, readonly) UILabel *headerRowTypeWarningLabel;
+@property (strong, nonatomic) UILabel *headerRowTimeWarningLabel;
+@property (strong, nonatomic) UILabel *headerRowTypeWarningLabel;
 
-@property (assign, nonatomic, readonly) CGFloat volumeSlider;
-@property (assign, nonatomic, readonly) BOOL onForWhite;
-@property (assign, nonatomic, readonly) BOOL onForBlack;
+@property (assign, nonatomic) CGFloat volumeSlider;
+@property (assign, nonatomic) BOOL onForWhite;
+@property (assign, nonatomic) BOOL onForBlack;
 
-@property (strong, nonatomic, readonly) AVAudioPlayer *soundID;   // warning's sound
+@property (strong, nonatomic) AVAudioPlayer *soundID;   // warning's sound
 
 @end
 
 @implementation WarningController {
-    //NSIndexPath *selectedIndexPath;
-    
     NSInteger selectedRow;
 }
+
 @synthesize soundID;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     selectedRow = -1;
-    
     // filling table
     extern NSMutableArray <NSDictionary *> *gWarnings;
     

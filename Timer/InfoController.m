@@ -10,8 +10,8 @@
 
 @interface InfoController ()
 
-@property (strong, nonatomic, readonly) UILabel *label;
-@property (strong, nonatomic, readonly) UITextView *textView;
+@property (strong, nonatomic) UILabel *label;
+@property (strong, nonatomic) UITextView *textView;
 
 @end
 

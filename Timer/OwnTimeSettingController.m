@@ -26,22 +26,22 @@ typedef enum {
 
 @interface OwnTimeSettingController ()
 // Pickers property
-@property (strong, nonatomic, readonly) UIPickerView *pickerView;
-@property (strong, nonatomic, readonly) NSDictionary *timePicker;
-@property (strong, nonatomic, readonly) NSArray *typeDelayPicker;
+@property (strong, nonatomic) UIPickerView *pickerView;
+@property (strong, nonatomic) NSDictionary *timePicker;
+@property (strong, nonatomic) NSArray *typeDelayPicker;
 
-@property (weak, nonatomic, readonly) UISwitch *hourglassSwitch;      // Тип игры (песочные часы / простой)
+@property (weak, nonatomic) UISwitch *hourglassSwitch;      // Тип игры (песочные часы / простой)
 
-@property (strong, nonatomic, readonly) UITextField *nameTextField;
-
-
-@property (strong, nonatomic, readonly) UILabel *headerRowTimeLabel;
-@property (strong, nonatomic, readonly) UILabel *headerRowOvertimeLabel;
-@property (strong, nonatomic, readonly) UILabel *headerRowTypeDelayLabel;
+@property (strong, nonatomic) UITextField *nameTextField;
 
 
-@property (weak, nonatomic, readonly) UIButton *infoButtonHourglass;
-@property (weak, nonatomic, readonly) UIButton *infoButtonDelay;
+@property (strong, nonatomic) UILabel *headerRowTimeLabel;
+@property (strong, nonatomic) UILabel *headerRowOvertimeLabel;
+@property (strong, nonatomic) UILabel *headerRowTypeDelayLabel;
+
+
+@property (weak, nonatomic) UIButton *infoButtonHourglass;
+@property (weak, nonatomic) UIButton *infoButtonDelay;
 
 
 @end

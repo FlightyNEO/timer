@@ -14,15 +14,15 @@
 
 @interface ViewController ()
 
-@property (weak, nonatomic, readonly) Button *reset;              // Reset button
-@property (weak, nonatomic, readonly) Button *setting;            // Setting button
+@property (weak, nonatomic) Button *reset;              // Reset button
+@property (weak, nonatomic) Button *setting;            // Setting button
 
-@property (strong, nonatomic, readonly) AVAudioPlayer *soundID;   // звук нажатия
-@property (assign, nonatomic, readonly) CGFloat volume;           // уровень громкости нажатия
+@property (strong, nonatomic) AVAudioPlayer *soundID;   // звук нажатия
+@property (assign, nonatomic) CGFloat volume;           // уровень громкости нажатия
 
 // иконки режима самолета
-@property (weak, nonatomic, readonly) UIImageView *airplainModeBlackIcon;
-@property (weak, nonatomic, readonly) UIImageView *airplainModeWhiteIcon;
+@property (weak, nonatomic) UIImageView *airplainModeBlackIcon;
+@property (weak, nonatomic) UIImageView *airplainModeWhiteIcon;
 
 @end
 
