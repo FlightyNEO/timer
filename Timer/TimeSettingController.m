@@ -21,7 +21,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Настройки" style:UIBarButtonItemStylePlain target:self action:@selector(actionBack:)];  // ИЗМЕНИТЬ
+    self.navigationItem.rightBarButtonItems = [self.navigationItem.rightBarButtonItems arrayByAddingObject:self.editButtonItem];
+    
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Настройки"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(actionBack:)];  // ИЗМЕНИТЬ
     self.navigationItem.leftBarButtonItem = backButton;
     
     // Разархивируем массив с собственными вариантами таймера
@@ -60,6 +65,14 @@
     
     _sections = [self.timeLimit allKeys];
     
+    NSString *obj = @"Свой";
+    
+    if ([_sections containsObject:obj]) {
+        NSMutableArray *tmpArray = [_sections mutableCopy];
+        [tmpArray removeObject:obj];
+        [tmpArray insertObject:obj atIndex:0];
+        _sections = tmpArray;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -140,14 +153,14 @@
 
 #pragma mark - Methods
 
--(BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden {
     return YES;
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.timeLimit count];
+    return self.timeLimit.count;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -217,6 +230,15 @@
     [self changeGameOptions:indexPath];
     
     [self archiveCurrentSetting];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        return YES;
+    } else {
+        return NO;
+    }
 }
 
 - (NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath {

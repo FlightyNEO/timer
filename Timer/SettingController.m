@@ -212,6 +212,51 @@ GameOption gGameOption;
     }
 }
 
+#pragma mark - Table view delegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        
+        CGFloat width = CGRectGetWidth(self.tableView.frame);
+        
+        UIFont *fontThin = [UIFont systemFontOfSize:16 weight:UIFontWeightThin];
+        UIFont *fontLight = [UIFont systemFontOfSize:11 weight:UIFontWeightLight];
+        
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        
+        NSMutableAttributedString *nameAttributeString = [[NSMutableAttributedString alloc] initWithString:[gGameName objectForKey:@"Title"]];
+        [nameAttributeString addAttribute:NSFontAttributeName
+                                    value:fontThin
+                                    range:NSMakeRange(0, nameAttributeString.length)];
+        [nameAttributeString addAttribute:NSParagraphStyleAttributeName
+                                    value:paragraphStyle
+                                    range:NSMakeRange(0, nameAttributeString.length)];
+        
+        NSMutableAttributedString *detailAttributeString = [[NSMutableAttributedString alloc] initWithString:[gGameName objectForKey:@"Detail"]];
+        [detailAttributeString addAttribute:NSFontAttributeName
+                                      value:fontLight
+                                      range:NSMakeRange(0, detailAttributeString.length)];
+        [detailAttributeString addAttribute:NSParagraphStyleAttributeName
+                                      value:paragraphStyle
+                                      range:NSMakeRange(0, detailAttributeString.length)];
+        
+        CGSize nameLabel = [nameAttributeString boundingRectWithSize:CGSizeMake(width - 15 * 2, CGFLOAT_MAX)
+                                                             options:NSStringDrawingUsesFontLeading
+                                                             context:nil].size;
+        
+        CGSize detailLabel = [detailAttributeString boundingRectWithSize:CGSizeMake(width - 15 * 2, CGFLOAT_MAX)
+                                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
+                                                                 context:nil].size;
+        
+        
+        return 5 + ceilf(nameLabel.height) + 5 + ceilf(detailLabel.height) + 5;
+    } else {
+        return 44;
+    }
+}
+
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
@@ -271,67 +316,8 @@ GameOption gGameOption;
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-#pragma mark - Table view delegate
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 0) {
-        
-        CGFloat width = CGRectGetWidth(self.tableView.frame);
-        
-        UIFont *fontThin = [UIFont systemFontOfSize:16 weight:UIFontWeightThin];
-        UIFont *fontLight = [UIFont systemFontOfSize:11 weight:UIFontWeightLight];
-        
-        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle defaultParagraphStyle] mutableCopy];
-        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
-        
-        NSMutableAttributedString *nameAttributeString = [[NSMutableAttributedString alloc] initWithString:[gGameName objectForKey:@"Title"]];
-        [nameAttributeString addAttribute:NSFontAttributeName
-                                    value:fontThin
-                                    range:NSMakeRange(0, nameAttributeString.length)];
-        [nameAttributeString addAttribute:NSParagraphStyleAttributeName
-                                    value:paragraphStyle
-                                    range:NSMakeRange(0, nameAttributeString.length)];
-        
-        NSMutableAttributedString *detailAttributeString = [[NSMutableAttributedString alloc] initWithString:[gGameName objectForKey:@"Detail"]];
-        [detailAttributeString addAttribute:NSFontAttributeName
-                                      value:fontLight
-                                      range:NSMakeRange(0, detailAttributeString.length)];
-        [detailAttributeString addAttribute:NSParagraphStyleAttributeName
-                                      value:paragraphStyle
-                                      range:NSMakeRange(0, detailAttributeString.length)];
-        
-        CGSize nameLabel = [nameAttributeString boundingRectWithSize:CGSizeMake(width - 15 * 2, CGFLOAT_MAX)
-                                                             options:NSStringDrawingUsesFontLeading
-                                                             context:nil].size;
-        
-        CGSize detailLabel = [detailAttributeString boundingRectWithSize:CGSizeMake(width - 15 * 2, CGFLOAT_MAX)
-                                                                 options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
-                                                                 context:nil].size;
-        
-        
-        return 5 + ceilf(nameLabel.height) + 5 + ceilf(detailLabel.height) + 5;
-    } else {
-        return 44;
     }
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Navigation
 
