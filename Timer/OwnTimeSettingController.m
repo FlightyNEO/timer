@@ -24,7 +24,7 @@ typedef enum {
     OwnTimeSettingControllerTypeTypeDelay = 4
 } OwnTimeSettingControllerType;
 
-@interface OwnTimeSettingController ()
+@interface OwnTimeSettingController () <UITextFieldDelegate>
 // Pickers property
 @property (strong, nonatomic) UIPickerView *pickerView;
 @property (strong, nonatomic) NSDictionary *timePicker;
@@ -297,40 +297,6 @@ typedef enum {
     return cellHeight;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -425,21 +391,12 @@ typedef enum {
         if ([self.timeSettingController.selectedIndexPath isEqual: self.editIndexPath]) {    // Если редактируемый таймер Выбран
             [self.timeSettingController changeGameOptions:[NSIndexPath indexPathForRow:self.editIndexPath.row inSection:[self.timeSettingController.sections indexOfObject:@"Свой"]]]; // change game option
         }
-
-        
-        //[self.delegate changeGameOptions:[NSIndexPath indexPathForRow:self.editIndexPath.row inSection:[self.delegate.sections indexOfObject:@"Свой"]]]; // change game option
     }
-    
     
     [self.navigationController popViewControllerAnimated:YES];
     
-    
     [self.timeSettingController archiveOwnSetting];      // архивируем свои настройки
     [self.timeSettingController archiveCurrentSetting];  // архивируем текущий таймер
-//    if ([self.delegate.selectedIndexPath isEqual: self.editIndexPath]) {    // Если редактируемый таймер Выбран
-//        [self.delegate archiveCurrentSetting];  // архивируем текущий таймер
-//    }
-    
     [self.timeSettingController refresh];
     
 }
@@ -483,9 +440,7 @@ typedef enum {
     
     [UIView setAnimationsEnabled:YES];
     
-    //[tableView beginUpdates];
     [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
-    //[tableView endUpdates];
     
     [UIView setAnimationsEnabled:[UIView areAnimationsEnabled]];
 }
@@ -546,7 +501,6 @@ typedef enum {
     }
     
     return string;
-    
 }
 
 - (NSDictionary *)createOwnGameOption {
@@ -652,16 +606,17 @@ typedef enum {
         }
         
         [self.pickerView selectRow:selectRow inComponent:0 animated:NO];
-        
     }
 }
 
 - (NSString *)titleForRow:(OwnTimeSettingControllerType)type {
     
-    NSMutableString *string;
+    NSMutableString *string = nil;
     
     switch (type) {
+        
         case OwnTimeSettingControllerTypeTime: {
+            
             string = [NSMutableString stringWithString:@"Ограничение времени: "];
             
             if (self.timePickerHours != 0) {
@@ -686,8 +641,7 @@ typedef enum {
                 [string appendFormat:@"нет"];
             }
             
-        }
-            break;
+        } break;
             
         case OwnTimeSettingControllerTypeOvertime: {
             
@@ -720,8 +674,7 @@ typedef enum {
                 }
 
             }
-        }
-            break;
+        } break;
             
         case OwnTimeSettingControllerTypeTypeDelay: {
             
@@ -730,18 +683,14 @@ typedef enum {
             [string appendFormat:@"%@", [self.typeDelayPicker objectAtIndex:self.typeDelay]];
             
             
-        }
-            break;
-            
-        default:
-            break;
+        } break;
     }
     
     return string;
-    
 }
 
 #pragma mark - Picker Data Source Methods
+
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:selectedIndexPath];
@@ -763,7 +712,6 @@ typedef enum {
     }
     
     return numberOfComponents;
-    
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
@@ -921,7 +869,6 @@ typedef enum {
         self.headerRowTypeDelayLabel.text = [self titleForRow:OwnTimeSettingControllerTypeTypeDelay];
         [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
-    
 }
 
 #pragma mark - Text field Delegate

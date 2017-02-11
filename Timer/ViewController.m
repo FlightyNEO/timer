@@ -403,12 +403,11 @@
                                                               handler:^(UIAlertAction *action) {
                                                                   
                                                                   [self resetTimer];
-                                                                  
                                                               }];
     
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Применить позже"
                                                            style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {}];
+                                                         handler:nil];
     
     [alert addAction:actionDestructive];
     [alert addAction:actionCancel];
