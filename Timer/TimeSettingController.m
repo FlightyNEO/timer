@@ -234,7 +234,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 && self.ownGameOptions.count > 0) {
         return YES;
     } else {
         return NO;

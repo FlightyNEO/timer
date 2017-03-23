@@ -67,6 +67,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
 #pragma mark - Drawing Methods
 
 - (void)drawing {
