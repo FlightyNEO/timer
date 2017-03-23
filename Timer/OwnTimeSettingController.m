@@ -291,6 +291,7 @@ typedef enum {
     CGFloat cellHeight = 40.f;
     
     if ((selectedIndexPath.row == indexPath.row) && (selectedIndexPath != nil)) {
+        cellHeight = 120.f;
         cellHeight = 150.f;
     }
     
