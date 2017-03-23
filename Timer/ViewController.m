@@ -67,6 +67,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientation) preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
+
 #pragma mark - Drawing Methods
 
 - (void)drawing {
@@ -403,12 +411,11 @@
                                                               handler:^(UIAlertAction *action) {
                                                                   
                                                                   [self resetTimer];
-                                                                  
                                                               }];
     
     UIAlertAction *actionCancel = [UIAlertAction actionWithTitle:@"Применить позже"
                                                            style:UIAlertActionStyleCancel
-                                                         handler:^(UIAlertAction *action) {}];
+                                                         handler:nil];
     
     [alert addAction:actionDestructive];
     [alert addAction:actionCancel];
